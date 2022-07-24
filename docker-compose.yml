@@ -1,0 +1,46 @@
+services:
+  nginx:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    image: nginx:web-server
+    container_name: concierge-web-server
+    depends_on:
+      - server
+    ports:
+      - 8081:80
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d
+
+  server:
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
+    image: node:app-server
+    volumes:
+      - ./server:/usr/src/app
+    container_name: concierge-app-server
+    # ports:
+    #   - "3005:3005"
+    working_dir: /usr/src/app
+    tty: true
+    # server/.envを作成し以下を設定してもOK
+    environment:
+      - TZ=Asia/Tokyo
+  # db:
+  #   container_name: db
+  #   image: mysql:8.0
+  #   command: --default-authentication-plugin=mysql_native_password
+  #   restart: always
+  #   ports:
+  #     - 3308:3306
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+  #     - MYSQL_HOST=${MYSQL_HOST}
+  #     - MYSQL_USER=${MYSQL_USER}
+  #     - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+  #     - MYSQL_DATABASE=${MYSQL_DATABASE}
+  #   volumes:
+  #     - mysql:/var/lib/mysql
+  #     - ./initdb.d:/docker-entrypoint-initdb.d
