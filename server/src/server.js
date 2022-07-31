@@ -1,15 +1,26 @@
-import express from 'express'
+// node_moduleからexpressを使う宣言
+const express = require("express");
+const cors = require("cors");
 
-const PORT = 3005
-const HOST = '0.0.0.0'
+const app = express();
+const corsOptions = {
+  origin: "http://server:3005"
+};
+const PORT = 3005;
 
-const app = express()
+// use middleware
+app.use(cors(corsOptions));
+app.use(express.json())
 
-app.get('/', (req, res) => {
-  const result = "connection success!!"
-  res.json(result)
-})
+// モデル全体を呼び出す
+const db = require("../models");
+// dbの接続開始
+db.sequelize.sync();
 
-app.listen(PORT, HOST, () => {
-  console.log(`Listening on port ${PORT}`)
+// 一旦ユーザールートだけを呼び出す(dbのようにroutes/index.jsを書けば個別でなくて済む)
+require("../routes/user.routes.js")(app);
+
+// first connection from client
+app.listen(PORT, () => {
+  console.log(`Server is runngin on port ${PORT}`)
 })
