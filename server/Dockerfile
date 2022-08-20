@@ -1,4 +1,4 @@
-FROM node:16.1.0
+FROM node:18.7.0
 
 # Create application directory in container
 WORKDIR /usr/src/app
