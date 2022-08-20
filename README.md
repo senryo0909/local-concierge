@@ -15,7 +15,7 @@
     補足
     ```bash
     # コンテナ・ネットワーク・ボリューム・イメージ全削除
-    $ docker-compose down --rmi all
+    $ docker-compose down --rmi all --volumes --remove-orphans
 
     # コンテナ停止
     $ docker-compose stop
