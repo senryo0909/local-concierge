@@ -64,8 +64,6 @@ const onListening = () => {
   console.log('Listening on ' + bind);
 };
 
-// const debug = debug('local-concierge:server');
-
 /**
  * Get port from environment and store in Express.
  */
