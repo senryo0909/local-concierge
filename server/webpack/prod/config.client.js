@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const { merge } = require('webpack-merge');
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const common = require('../common/config.client.js');
 
 module.exports = merge(common, {
@@ -14,13 +14,13 @@ module.exports = merge(common, {
       new CssMinimizerPlugin({
         minimizerOptions: {
           preset: [
-            "default",
+            'default',
             {
               discardComments: { removeAll: true },
             },
           ],
         },
-      })
+      }),
     ],
   },
 });

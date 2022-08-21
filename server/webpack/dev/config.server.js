@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
 const { join } = require('path');
-const { merge } = require('webpack-merge');
 const NodemonPlugin = require('nodemon-webpack-plugin');
+const { merge } = require('webpack-merge');
 const common = require('../common/config.server.js');
 
 module.exports = merge(common, {

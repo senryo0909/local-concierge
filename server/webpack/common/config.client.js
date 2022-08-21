@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const { join } = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -31,28 +31,28 @@ module.exports = {
         test: /\.(sa|sc|c)ss$/i,
         exclude: /node_modules/,
         use: [
-            MiniCssExtractPlugin.loader,
-            {
-                loader: 'css-loader',
-                options: { url: false },
-            },
-            {
-                loader: 'sass-loader',
-                options: { sourceMap: true }
-            },
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: { url: false },
+          },
+          {
+            loader: 'sass-loader',
+            options: { sourceMap: true },
+          },
         ],
       },
-    ]
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-        filename: 'css/main.css',
-        // TODO: Cache Busting したいが、ejs をバンドルしてないから、
-        // html-webpack-plugin の inject 使って差し込めない。
-        // filename: 'css/main.[contenthash].css',
+      filename: 'css/main.css',
+      // TODO: Cache Busting したいが、ejs をバンドルしてないから、
+      // html-webpack-plugin の inject 使って差し込めない。
+      // filename: 'css/main.[contenthash].css',
     }),
   ],
   experiments: {
     topLevelAwait: true,
-  }
-}
+  },
+};
