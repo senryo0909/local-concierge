@@ -1,13 +1,33 @@
 # 事前準備
 
+## インストール必須
+
 - [Node.js 18.7.0](https://nodejs.org/ja/)
 - [npm 8.15.0](https://docs.npmjs.com/)
 - [Docker](https://www.docker.com/)
 - [docker-compose](https://docs.docker.com/compose/)
 
+## エディタ（VSCode）設定
+
+1. VSCode で <kbd>Cmd（Ctrl）</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> を押してコマンドパレットを表示
+2. `Extensions: Show Recommended Extensions` と入力
+3. ワークスペースで推奨している拡張機能を全てインストール
+
+または
+
+1. VSCode で <kbd>Cmd（Ctrl）</kbd> + <kbd>Shift</kbd> + <kbd>X</kbd> を押す
+2. `@recommended ` と入力
+3. ワークスペースで推奨している拡張機能を全てインストール
+
 # 環境構築手順
 
-1. buildする(docker-compose.ymlファイルのあるパスで実行)
+1. .env をコピーする
+    ```bash
+    $ cd your/project/root
+    $ cp .env.example .env
+    ```
+
+2. buildする(docker-compose.ymlファイルのあるパスで実行)
     ```bash
     $ docker-compose up --build -d
     ```
@@ -21,7 +41,7 @@
     $ docker-compose stop
     ```
 
-2. 依存ライブラリのインストール
+3. 依存ライブラリのインストール
     > **Note**<br>
     > パッケージの追加,更新 をする場合は、`$ npm install` や `$ npm update` に置き換えて使用してください。
     > 
@@ -31,20 +51,28 @@
     $ npm ci
     ```
 
-3. Expressサーバーの起動
+4. Expressサーバーの起動
     ```bash
     $ npm start
     ```
 
-4. 完了<br>
+5. 完了<br>
     http://localhost:3005/ にアクセスして、トップページが表示されることを確認してください。
 
 # URL
 
-|環境|役割|役割|
+|環境|役割|URL|
 |---|---|---|
 |local|webアプリURL|http://localhost:3005/|
 
+# npm スクリプト
+
+|コマンド|役割
+|---|---|
+|npm start|開発用Expressサーバーの起動|
+|npm run build|本番用distディレクトリを構築|
+|npm run lint|js,scssファイルのソースコード検査|
+|npm run fix|js,scssファイルのソースコード検査&修正|
 
 # 課題
 - webサーバーの証明書やセキュリティーを強化できていない
