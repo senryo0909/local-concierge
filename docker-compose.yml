@@ -50,9 +50,10 @@ services:
     volumes:
       - mysql:/var/lib/mysql
       - ./db/initdb.d:/docker-entrypoint-initdb.d
-      # - ./db/conf:/etc/mysql/conf.d/:ro
+      - ./db/logs:/var/log/mysql
     networks:
       - local-concierge
+
 volumes:
   mysql:
 

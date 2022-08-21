@@ -5,8 +5,5 @@ WORKDIR /usr/src/app
 
 COPY . .
 COPY ../.env .
-# RUN npm install --global nodemon
-
-# RUN npm install
 
 EXPOSE 3005
