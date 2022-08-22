@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
 const { join } = require('path');
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   entry: {
-    server: './src/bin/www',
+    server: './src/bin/www.js',
   },
   output: {
     path: join(__dirname, '..', '..', 'dist'),
@@ -25,9 +25,9 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
       },
-    ]
+    ],
   },
   experiments: {
     topLevelAwait: true,
-  }
-}
+  },
+};

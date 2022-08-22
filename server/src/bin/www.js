@@ -11,7 +11,7 @@ import app from '../app';
  * Normalize a port into a number, string, or false.
  */
 
-const normalizePort = (val) => {
+const normalizePort = val => {
   const port = parseInt(val, 10);
 
   if (isNaN(port)) {
@@ -25,20 +25,18 @@ const normalizePort = (val) => {
   }
 
   return false;
-}
+};
 
 /**
  * Event listener for HTTP server "error" event.
  */
 
-const onError = (error) => {
+const onError = error => {
   if (error.syscall !== 'listen') {
     throw error;
   }
 
-  const bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -53,7 +51,7 @@ const onError = (error) => {
     default:
       throw error;
   }
-}
+};
 
 /**
  * Event listener for HTTP server "listening" event.
@@ -61,14 +59,10 @@ const onError = (error) => {
 
 const onListening = () => {
   const addr = server.address();
-  const bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
+  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
   // TODO: log
   console.log('Listening on ' + bind);
-}
-
-// const debug = debug('local-concierge:server');
+};
 
 /**
  * Get port from environment and store in Express.
@@ -78,18 +72,13 @@ const port = normalizePort(process.env.PORT || 3005);
 app.set('port', port);
 
 /**
-* Create HTTP server.
-*/
+ * Create HTTP server.
+ */
 
 const server = http.createServer(app);
-
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server
-  .listen(port)
-  .on('error', onError)
-  .on('listening', onListening)
-;
+server.listen(port).on('error', onError).on('listening', onListening);

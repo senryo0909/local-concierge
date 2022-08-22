@@ -1,9 +1,6 @@
-"use strict";
+'use strict';
 
-const {
-  NoEmitOnErrorsPlugin,
-  HotModuleReplacementPlugin
-} = require('webpack');
+const { NoEmitOnErrorsPlugin, HotModuleReplacementPlugin } = require('webpack');
 const { merge } = require('webpack-merge');
 const common = require('../common/config.client.js');
 
@@ -14,8 +11,5 @@ module.exports = merge(common, {
   entry: {
     main: ['webpack-hot-middleware/client?reload=true'],
   },
-  plugins: [
-    new NoEmitOnErrorsPlugin(),
-    new HotModuleReplacementPlugin(),
-  ],
+  plugins: [new NoEmitOnErrorsPlugin(), new HotModuleReplacementPlugin()],
 });
