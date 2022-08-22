@@ -8,6 +8,7 @@
     "build": "run-p sub:webpack:prod:*",
     "lint": "run-s sub:lint:*",
     "fix": "run-s sub:fix:*",
+    "husky": "cd .. && husky install server/.husky",
     "sub:lint:eslint": "eslint . --format friendly",
     "sub:lint:style": "stylelint .",
     "sub:lint:prettier": "prettier . --check",
@@ -17,8 +18,7 @@
     "sub:webpack:dev:client": "webpack --config ./webpack/dev/config.client.js",
     "sub:webpack:dev:server": "webpack --watch --config ./webpack/dev/config.server.js",
     "sub:webpack:prod:client": "webpack --config ./webpack/prod/config.client.js",
-    "sub:webpack:prod:server": "webpack --config ./webpack/prod/config.server.js",
-    "prepare": "cd .. && husky install server/.husky"
+    "sub:webpack:prod:server": "webpack --config ./webpack/prod/config.server.js"
   },
   "keywords": [],
   "author": "anyone who wanna join this app",

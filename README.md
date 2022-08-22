@@ -21,60 +21,77 @@
 
 # 環境構築手順
 
-1. .env をコピーする
-    ```bash
-    $ cd your/project/root
-    $ cp .env.example .env
-    ```
+1. husky のセットアップ
 
-2. buildする(docker-compose.ymlファイルのあるパスで実行)
-    ```bash
-    $ docker-compose up --build -d
-    ```
+   > **Note**<br>
+   > husky の公式では、npm スクリプトの prepare にてセットアップしているが、本プロジェクトは、コンテナ内で npm スクリプトを実行するので、.git がマウントされない。<br>
+   > なので、下記コマンドをホストマシン上で実行しセットアップする。
 
-    補足
-    ```bash
-    # コンテナ・ネットワーク・ボリューム・イメージ全削除
-    $ docker-compose down --rmi all --volumes --remove-orphans
+   ```bash
+   # serverディレクトリに移動
+   $ cd your/project/root/server
+   $ npm run husky
+   ```
 
-    # コンテナ停止
-    $ docker-compose stop
-    ```
+2. .env をコピーする
 
-3. 依存ライブラリのインストール
-    > **Note**<br>
-    > パッケージの追加,更新 をする場合は、`$ npm install` や `$ npm update` に置き換えて使用してください。
-    > 
+   ```bash
+   $ cd ..
+   $ cp .env.example .env
+   ```
 
-    ```bash
-    # 現在のpackage-lock.jsonを元に依存パッケージをインストール
-    $ npm ci
-    ```
+3. build する(docker-compose.yml ファイルのあるパスで実行)
 
-4. Expressサーバーの起動
-    ```bash
-    $ npm start
-    ```
+   ```bash
+   $ docker-compose up --build -d
+   ```
 
-5. 完了<br>
-    http://localhost:3005/ にアクセスして、トップページが表示されることを確認してください。
+   補足
+
+   ```bash
+   # コンテナ・ネットワーク・ボリューム・イメージ全削除
+   $ docker-compose down --rmi all --volumes --remove-orphans
+
+   # コンテナ停止
+   $ docker-compose stop
+   ```
+
+4. 依存ライブラリのインストール
+
+   > **Note**<br>
+   > パッケージの追加,更新 をする場合は、`$ npm install` や `$ npm update` に置き換えて使用してください。
+
+   ```bash
+   # 現在のpackage-lock.jsonを元に依存パッケージをインストール
+   $ npm ci
+   ```
+
+5. Express サーバーの起動
+
+   ```bash
+   $ npm start
+   ```
+
+6. 完了<br>
+   http://localhost:3005/ にアクセスして、トップページが表示されることを確認してください。
 
 # URL
 
-|環境|役割|URL|
-|---|---|---|
-|local|webアプリURL|http://localhost:3005/|
+| 環境  | 役割           | URL                    |
+| ----- | -------------- | ---------------------- |
+| local | web アプリ URL | http://localhost:3005/ |
 
 # npm スクリプト
 
-|コマンド|役割
-|---|---|
-|npm start|開発用Expressサーバーの起動|
-|npm run build|本番用distディレクトリを構築|
-|npm run lint|js,scssファイルのソースコード検査|
-|npm run fix|js,scssファイルのソースコード検査&修正|
+| コマンド      | 役割                                    |
+| ------------- | --------------------------------------- |
+| npm start     | 開発用 Express サーバーの起動           |
+| npm run build | 本番用 dist ディレクトリを構築          |
+| npm run lint  | js,scss ファイルのソースコード検査      |
+| npm run fix   | js,scss ファイルのソースコード検査&修正 |
 
 # 課題
-- webサーバーの証明書やセキュリティーを強化できていない
-- port番号は各自の環境に合わせやすいように.envにまとめたい
-- Makefileで構築コマンドを減らしたい。
+
+- web サーバーの証明書やセキュリティーを強化できていない
+- port 番号は各自の環境に合わせやすいように.env にまとめたい
+- Makefile で構築コマンドを減らしたい。
